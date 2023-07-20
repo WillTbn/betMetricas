@@ -1,12 +1,12 @@
 <template>
-  <q-form class="row justify-around" @submit.prevent="createValues()">
-    <div class="col-12 q-mt-md q-mr-sm">
+  <q-form @submit.prevent="createValues()">
+    <div class="column items-center justify-center q-my-lg">
       <q-input
-        style="max-width: 200px"
-        c
+        class="col-4 col-sm-6 col-md-6 q-glutter-sm"
         type="number"
         standout
         dense
+        label="quantidade"
         placeholder=""
         v-model="quantity"
         :rules="[
@@ -15,20 +15,22 @@
         ]"
       />
     </div>
-    <!-- <q-btn @click="setGamesInline()" color="primary" label="Continue" /> -->
-    <q-btn
-      class="q-mt-md q-mr-sm"
-      type="submit"
-      color="primary"
-      label="Continue"
-    />
-    <q-btn
-      flat
-      @click="toDecrease()"
-      color="primary"
-      label="Back"
-      class="q-mt-md q-mr-sm"
-    />
+    <div class="row justify-around">
+      <!-- <q-btn @click="setGamesInline()" color="primary" label="Continue" /> -->
+      <q-btn
+        class="q-mt-md q-mr-sm"
+        type="submit"
+        color="primary"
+        label="Continue"
+      />
+      <q-btn
+        flat
+        @click="toDecrease()"
+        color="primary"
+        label="Back"
+        class="q-mt-md q-mr-sm"
+      />
+    </div>
   </q-form>
 </template>
 <script setup>

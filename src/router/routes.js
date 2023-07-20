@@ -8,12 +8,12 @@ const routes = [
                 component: () => import("pages/IndexPage.vue"),
             },
             {
-                path: "times",
-                name: "team",
-                component: () => import("pages/TimesSaved.vue"),
+                path: "statistics",
+                name: "statistics",
+                component: () => import("pages/StatisticsPage.vue"),
             },
             {
-                path: ":key/edit",
+                path: ":key/statistics",
                 name: "Edit",
                 component: () => import("pages/EditablePage.vue"),
             },

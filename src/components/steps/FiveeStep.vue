@@ -53,6 +53,9 @@ export default {
     const params = computed(() => store.state.parameters.paramsRow);
     const columns = computed(() => store.state.parameters.paramsColumns);
     const metricas = computed(() => store.state.parameters.metricas);
+    function toDecrease() {
+      store.commit("parameters/toDecreaseStep", 1);
+    }
     const salvedData = async () => {
       loading.value = true;
       console.log("team ->", team);
@@ -61,7 +64,7 @@ export default {
       console.log("columns ->", columns);
       try {
         await create(team.value, params.value, metricas.value, columns.value);
-        router.replace({ path: "/times" });
+        router.replace({ path: "/statistics" });
       } catch (e) {
         console.log(e);
         errorNotify(e);
@@ -70,7 +73,7 @@ export default {
         loading.value = false;
       }
     };
-    return { salvedData, loading, team, params, columns };
+    return { salvedData, toDecrease, loading, team, params, columns };
   },
 };
 </script>

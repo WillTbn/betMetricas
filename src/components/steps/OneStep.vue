@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <p>
-      Aqui você irá adionar um identificador para sua metrica. <br />
-      Isso pode ou não se salvo por você no final.
+  <div class="row justify-center text-center">
+    <p class="col-12">
+      Aqui você irá adionar um identificador para sua metrica. Isso pode ou não
+      se salvo por você no final.
     </p>
-    <q-form class="column items-center" @submit.prevent="sendStep()">
+    <q-form class="col-2 items-center" @submit.prevent="sendStep()">
       <q-input
         standout
         dense

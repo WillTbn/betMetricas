@@ -7,7 +7,12 @@
           >sigar o passo a passo e terá todas a medias no final</span
         >
       </div>
-      <q-stepper v-model="step" vertical color="primary" animated>
+      <q-stepper
+        v-model="step"
+        color="primary"
+        animated
+        style="min-height: 60vh"
+      >
         <StepperLayout
           title="De o nome da sua metrica"
           :step="step"
@@ -30,7 +35,7 @@
         <!-- ETAPA 3 -->
         <StepperLayout
           title="Quantidade de jogos"
-          caption="ex:Chute a gol, ace, bola de três, etc.."
+          caption=""
           :step="step"
           :name="3"
           icon="assignment"
@@ -44,7 +49,7 @@
         </StepperLayout>
         <!-- ETAPA 4 -->
         <StepperLayout
-          title="Coloque os números do time"
+          title="Coloque os dados"
           :step="step"
           :name="4"
           icon="add_comment"

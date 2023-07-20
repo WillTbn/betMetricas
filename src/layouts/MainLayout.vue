@@ -46,7 +46,7 @@ const linksList = [
     title: "Estatísticas salvas",
     caption: "",
     icon: "table_view",
-    link: "/#/times",
+    link: "/#/statistics",
   },
 ];
 

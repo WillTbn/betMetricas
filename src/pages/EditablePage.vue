@@ -35,7 +35,7 @@
             label="ver lista"
             color="info"
             flat
-            :to="{ name: 'team' }"
+            :to="{ name: 'statistics' }"
           />
         </div>
       </q-form>

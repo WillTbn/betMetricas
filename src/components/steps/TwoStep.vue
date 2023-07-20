@@ -1,19 +1,26 @@
 <template>
   <div class="">
-    <p>
-      Aqui adicione quantas e quais metricas quiser, lembresse isso será usado
-      para seleciona os dados.
-    </p>
-
-    <div class="" v-for="item in listParams" :key="item.id">
-      <q-chip color="dark" text-color="white">
-        <q-icon round name="closed" @click="removeParams()" />
-        {{ item.name }}
-      </q-chip>
+    <div class="row justify-center text-center">
+      <p class="col-12 text-weight-medium">
+        Aqui adicione quantas e quais metricas quiser, lembresse isso será usado
+        para seleciona os dados.
+      </p>
     </div>
-    <q-form class="row justify-center" @submit.prevent="addParams()">
+    <div class="row">
+      <div class="col-2" v-for="item in listParams" :key="item.id">
+        <q-chip color="dark" text-color="white">
+          <q-icon round name="closed" @click="removeParams()" />
+          {{ item.name }}
+        </q-chip>
+      </div>
+    </div>
+
+    <q-form
+      class="column items-center justify-center q-my-lg"
+      @submit.prevent="addParams()"
+    >
       <q-input
-        class="col-4"
+        class="col-4 col-md-6 col-sm-12 q-glutter-sm"
         standout
         dense
         placeholder="Ex: total de chute, chute a gol, arremessos de 3 "
@@ -24,22 +31,35 @@
             'Campo vazio, digite o nome do parametro',
         ]"
       />
-      <div class="col-4">
-        <q-btn round type="submit" color="black" class="q-ml-sm">
-          <q-icon name="arrow_forward" />
-        </q-btn>
-      </div>
+      <q-btn label="adicionar" type="submit" color="black" class="q-ml-sm">
+        <q-icon name="arrow_forward" />
+      </q-btn>
+      <!-- <q-btn
+        type="submit"
+        dense
+        color="primary"
+        label="adicionar"
+        class="col-4 col-md-2 col-sm-2"
+      >
+        <q-icon name="arrow_forward" />
+      </q-btn> -->
     </q-form>
-    <q-stepper-navigation>
-      <q-btn @click="increase()" color="primary" label="Continue" />
+
+    <div class="row justify-around">
+      <q-btn
+        @click="increase()"
+        color="primary"
+        label="Continue"
+        class="col-4 col-md-2"
+      />
       <q-btn
         flat
         @click="toDecrease()"
         color="primary"
         label="Back"
-        class="q-ml-sm"
+        class="col-4 col-md-2 q-ml-sm"
       />
-    </q-stepper-navigation>
+    </div>
   </div>
 </template>
 <script>
