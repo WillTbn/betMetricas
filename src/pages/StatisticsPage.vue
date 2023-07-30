@@ -48,7 +48,7 @@
     </div>
   </div>
 </template>
-    <script>
+<script>
 import { computed, onMounted, ref } from "vue";
 import { useStore } from "vuex";
 import TableMetricas from "../components/TableMetricas.vue";

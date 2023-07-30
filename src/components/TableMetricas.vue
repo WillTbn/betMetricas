@@ -11,6 +11,7 @@
 
 <script>
 export default {
+  name: "TableMetricas",
   props: {
     team: {
       type: String,

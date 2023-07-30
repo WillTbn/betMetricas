@@ -1,7 +1,7 @@
 <template>
   <q-item clickable tag="a" :href="link">
     <q-item-section v-if="icon" avatar>
-      <q-icon :name="icon" />
+      <i :class="icon" style="font-size: small"></i>
     </q-item-section>
 
     <q-item-section>

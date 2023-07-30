@@ -1,1 +1,21 @@
 // app global css in SCSS form
+.moon {
+    position: absolute;
+    z-index: 9999;
+    bottom: 0;
+}
+
+.w-25 {
+    width: 0.2rem;
+    width: 0.2rem;
+}
+.font-awe {
+    font-family: "Font Awesome 6 Free";
+}
+.size-font-9 {
+    font-size: 0.9rem;
+}
+a.brand:hover {
+    cursor: default !important;
+    color: aqua !important;
+}

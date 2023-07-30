@@ -5,6 +5,11 @@ const routes = [
         children: [
             {
                 path: "",
+                component: () => import("pages/HomePage.vue"),
+            },
+            {
+                path: "created",
+                name: "created",
                 component: () => import("pages/IndexPage.vue"),
             },
             {
@@ -16,6 +21,11 @@ const routes = [
                 path: ":key/statistics",
                 name: "Edit",
                 component: () => import("pages/EditablePage.vue"),
+            },
+            {
+                path: "teams",
+                name: "teams",
+                component: () => import("pages/TeamsPage.vue"),
             },
         ],
     },

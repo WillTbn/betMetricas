@@ -3,10 +3,7 @@
     <q-header class="bg-dark text-white">
       <q-toolbar>
         <q-toolbar-title>
-          <!-- <q-avatar>
-            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg" />
-          </q-avatar> -->
-          Bet Metricas
+          <LogoComponent sizeClass="font-awe size-font-9" />
         </q-toolbar-title>
 
         <q-btn dense flat round icon="menu" @click="toggleRightDrawer" />
@@ -24,45 +21,57 @@
         />
       </q-list>
     </q-drawer>
-
     <q-page-container>
       <router-view />
     </q-page-container>
   </q-layout>
 </template>
-
 <script>
-import { defineComponent, ref } from "vue";
+import { computed, defineComponent, ref } from "vue";
 import EssentialLink from "components/EssentialLink.vue";
+import LogoComponent from "components/LogoComponent.vue";
+import { useStore } from "vuex";
 
 const linksList = [
   {
-    title: "Adicionar",
-    caption: "",
-    icon: "addchart",
-    link: "/",
+    title: "Cria metricas",
+    caption: "created",
+    icon: "fa-solid fa-table-list",
+    link: "/#/created",
   },
   {
     title: "Estatísticas salvas",
     caption: "",
-    icon: "table_view",
+    icon: "fa-solid fa-floppy-disk",
     link: "/#/statistics",
   },
+  //   {
+  //     title: "Times API",
+  //     caption: "",
+  //     icon: "table_view",
+  //     link: "/#/teams",
+  //   },
 ];
-
 export default defineComponent({
   name: "MainLayout",
 
   components: {
     EssentialLink,
+    LogoComponent,
   },
 
   setup() {
+    const store = useStore();
     const rightDrawerOpen = ref(false);
+
+    // const cookie = computed(() => store.getters["essencial/statusCookie"]);
+    const cookie = computed(() => store.state.essencial.terms);
 
     return {
       essentialLinks: linksList,
       rightDrawerOpen,
+      cookie,
+
       toggleRightDrawer() {
         rightDrawerOpen.value = !rightDrawerOpen.value;
       },
