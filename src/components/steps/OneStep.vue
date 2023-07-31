@@ -29,14 +29,30 @@
 <script>
 import { useStore } from "vuex";
 import { computed, ref } from "vue";
+import useNotify from "../../composables/demo/UseNotify";
 
 export default {
   setup() {
     const store = useStore();
     const team = ref("Teste Play");
+    const { errorNotify } = useNotify();
+    const textError = ref();
     function sendStep() {
-      store.commit("parameters/addTeam", team.value);
-      store.commit("parameters/increaseStep", 1);
+      let names = Object.keys(localStorage);
+      if (
+        names.filter(
+          (e) =>
+            e.toUpperCase().replace(/\s+/g, "") ===
+            team.value.toUpperCase().replace(/\s+/g, "")
+        ).length > 0
+      ) {
+        textError.value =
+          "Use outro identificador, atualize o existente ou excluao e volte aqui. ";
+        errorNotify("Identificador já utilizado!");
+      } else {
+        store.commit("parameters/addTeam", team.value);
+        store.commit("parameters/increaseStep", 1);
+      }
     }
     return {
       team,

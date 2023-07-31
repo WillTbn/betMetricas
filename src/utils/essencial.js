@@ -29,7 +29,7 @@ function metricas(estatiticas, quantidadeJogos, time, paramentros, tipo) {
                 );
                 // console.log("parte", parte);
 
-                console.log(`'${i} ${paramentros[i]} ${parte}`);
+                // console.log(`'${i} ${paramentros[i]} ${parte}`);
 
                 jsonDados[paramentros[i]] = parseInt(calculando / intForce);
                 arrayDados.push({

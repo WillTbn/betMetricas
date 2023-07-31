@@ -7,22 +7,36 @@ export default function useMetricas() {
 
         return game;
     };
+    const addPlaysMetricas = async (quantity, update) => {
+        for (let i = 0; i < quantity; i++) {
+            let contador = 0;
+            for (let p = 0; p < Object.values(update).length; p++) {
+                contador = +1;
+                console.log(Object.values(update)[p]);
+                Object.assign(Object.values(update)[p], {
+                    ["jogo_" +
+                    (Object.keys(Object.values(update)[p]).length + i)]: "",
+                });
+            }
+        }
+        return update;
+    };
     const update = async (item) => {
-        // localStorage.removeItem(item.name)
-        // let getLocalstorage = localStorage.getItem(item.name);
         item.update_at = Date.now();
-        console.log(item.editable);
-        item.params = [];
-
-        // localStorage.setItem(item)
+        item.params = metricas(
+            returnVirgula(item.editable),
+            Object.keys(Object.values(item.editable)[0]).length,
+            item.name,
+            Object.keys(item.editable),
+            "row"
+        );
         localStorage.setItem(item.name, JSON.stringify([item]));
-        console.log(item);
     };
     const create = async (team, params, metricas, columns) => {
-        console.log("team ->", team);
-        console.log("params ->", params);
-        console.log("metricas ->", metricas);
-        console.log("columns ->", columns);
+        // console.log("team ->", team);
+        // console.log("params ->", params);
+        // console.log("metricas ->", metricas);
+        // console.log("columns ->", columns);
         let dataSalved = [];
         dataSalved.push({
             name: team,
@@ -40,10 +54,34 @@ export default function useMetricas() {
         store.commit("parameters/deleteTeam", item.name);
         localStorage.removeItem(item.key);
     };
+    const sizeLocalStorage = async (select) => {
+        let size = 0;
+        for (var k in localStorage) {
+            if (
+                localStorage.getItem(k) != null ||
+                localStorage.getItem(k) != undefined
+            ) {
+                size += localStorage.getItem(k).length;
+            }
+        }
+        let totalMB = size / 1024;
+        let totalMBPossible = 16;
+        let porc = (totalMB / totalMBPossible) * 100;
+        let json = {
+            mb: parseFloat(totalMB),
+            porc: parseFloat(porc.toFixed(2)),
+            kb: size,
+        };
+
+        return json[select];
+    };
+
     return {
         getOne,
         update,
         create,
         deleted,
+        addPlaysMetricas,
+        sizeLocalStorage,
     };
 }

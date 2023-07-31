@@ -63,13 +63,15 @@ export default {
       console.log("columns ->", columns);
       try {
         await create(team, paramsRow, metricas, columns);
-        router.replace({ path: "/times" });
       } catch (e) {
         console.log(e);
         errorNotify(e);
       } finally {
         infoNotify("Estatística salva com sucesso!");
         loading.value = false;
+        setTimeout(() => {
+          router.go({ path: "statiticas" });
+        }, 1000);
       }
       //   let dataSalved = [];
       //   dataSalved.push({

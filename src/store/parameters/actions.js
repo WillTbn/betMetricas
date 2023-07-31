@@ -9,7 +9,7 @@ export function getGamesSalved(context) {
             var value = localStorage.getItem(key);
             data.push(JSON.parse(value));
             data[i][0]["key"] = key;
-            console.log("Chave: " + key);
+            // console.log("Chave: " + key);
             // console.log("Valor: " + value);
         }
         // for (let i = 0; i < data.length; i++) {

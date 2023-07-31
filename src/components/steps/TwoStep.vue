@@ -2,8 +2,8 @@
   <div class="">
     <div class="row justify-center text-center">
       <p class="col-12 text-weight-medium">
-        Aqui adicione quantas e quais metricas quiser, lembresse isso será usado
-        para seleciona os dados.
+        Aqui adicione quantas e quais metricas quiser, isso será usado para
+        nomear os dados.
       </p>
     </div>
     <div class="row">
@@ -91,7 +91,14 @@ export default {
       store.commit("parameters/removeName", item);
     }
     function addParams() {
-      store.commit("parameters/addName", params.value);
+      if (
+        listParams.value.length > 0 &&
+        listParams.value.filter((e) => e.name == params.value).length > 0
+      ) {
+        errorNotify("Nome de metrica já adicionado.");
+      } else {
+        store.commit("parameters/addName", params.value);
+      }
     }
 
     return {

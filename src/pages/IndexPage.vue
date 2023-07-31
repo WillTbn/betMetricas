@@ -1,17 +1,24 @@
 <template>
-  <q-page class="flex flex-center">
+  <div class="flex flex-center">
     <div class="q-pa-md">
-      <div class="col q-mt-md q-mr-sm">
-        <h4 class="col-12">Adicione a metrica que quiser!</h4>
-        <span class="text-overline"
-          >sigar o passo a passo e terá todas a medias no final</span
-        >
+      <div class="row justify-center">
+        <h4 class="col-md-12 col-sm-6 text-h6 text-weight-bold">
+          Adicione a metrica que quiser!
+        </h4>
+        <div class="col-12">
+          <span class="text-overline"
+            >sigar o passo a passo e terá todas os dados com as medias no
+            final</span
+          >
+        </div>
       </div>
       <q-stepper
         v-model="step"
         color="primary"
         animated
         style="min-height: 60vh"
+        header-nav
+        ref="stepper"
       >
         <StepperLayout
           title="De o nome da sua metrica"
@@ -106,7 +113,7 @@
         </StepperLayout>
       </q-stepper>
     </div>
-  </q-page>
+  </div>
 </template>
 
 <script>

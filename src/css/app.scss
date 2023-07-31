@@ -1,6 +1,6 @@
 // app global css in SCSS form
 .moon {
-    position: absolute;
+    position: fixed;
     z-index: 9999;
     bottom: 0;
 }
@@ -16,6 +16,5 @@
     font-size: 0.9rem;
 }
 a.brand:hover {
-    cursor: default !important;
     color: aqua !important;
 }
