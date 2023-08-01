@@ -1,19 +1,19 @@
 <template>
   <div class="q-pa-md">
     <div class="row justify-between">
-      <h3 class="text-h6 text-weight-bold">Times Salvos</h3>
-      <size-local></size-local>
+      <h3 class="text-h6 text-weight-bold col-md-6 col-sm-4">Times Salvos</h3>
+      <size-local class="col-md-6 col-sm-4"></size-local>
     </div>
     <!-- <div class="column justify-center"> -->
-    <div class="row" v-if="games.length > 0">
-      <div class="col-sm-12 col-md-6" v-for="team in games" :key="team.name">
+    <div v-if="games.length > 0">
+      <div v-for="team in games" :key="team.name">
         <table-metricas
           :team="team.name"
           :columnsMetricas="team.columns"
           :rowMetricas="team.params"
         />
         <div class="row justify-around">
-          <div class="col-4">
+          <div class="col-md-6 col-sm-4">
             <q-btn
               type="submit"
               :loading="loading"
@@ -28,7 +28,7 @@
               </template>
             </q-btn>
           </div>
-          <div class="col-4">
+          <div class="col-md-6 col-sm-4">
             <q-btn
               type="submit"
               :loading="loading"
@@ -71,7 +71,7 @@ export default {
     const router = useRouter();
     const $q = useQuasar();
     const games = computed(() => store.state.parameters.gamesSalved);
-    const { deleted } = useMetricas();
+    const { deleted, getAll } = useMetricas();
     function edit(team) {
       router.push({ path: `${team.key}/statistics`, params: team.key });
     }
@@ -93,7 +93,8 @@ export default {
       }
     };
     onMounted(() => {
-      store.dispatch("parameters/getGamesSalved");
+      //   store.dispatch("parameters/getGamesSalved");
+      getAll();
     });
     return {
       games,

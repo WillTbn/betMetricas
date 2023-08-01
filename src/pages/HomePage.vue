@@ -1,6 +1,6 @@
 <template>
   <q-page elevated class="column items-center justify-center">
-    <div class="col-12 col-md-2">
+    <div class="col-sm-12 col-md-2">
       <LogoComponent sizeClass="font-awe text-weight-bolder text-h3" />
     </div>
     <!-- <p class="text-weight-thin">

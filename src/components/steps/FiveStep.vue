@@ -73,25 +73,6 @@ export default {
           router.go({ path: "statiticas" });
         }, 1000);
       }
-      //   let dataSalved = [];
-      //   dataSalved.push({
-      //     name: team,
-      //     params: paramsRow,
-      //     editable: { ...metricas },
-      //     created_at: Date.now(),
-      //   });
-      //   Object.assign(dataSalved[0], {
-      //     columns: columns,
-      //   });
-      //   //   dataSalved[0][team.value].push({ columns: [columnsParams.value] });
-      //   //   localStorage.setItem(Date.now(), JSON.stringify(dataSalved));
-      //   localStorage.setItem(team, JSON.stringify(dataSalved));
-      //   setTimeout(() => {
-      //     infoNotify("Estatística salva com sucesso");
-
-      //     loading.value = false;
-      //     router.replace({ path: "/times" });
-      //   }, 4000);
     };
     return { salvedData, loading, team };
   },

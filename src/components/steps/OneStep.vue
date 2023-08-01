@@ -4,7 +4,7 @@
       Aqui você irá adionar um identificador para sua metrica. Isso pode ou não
       se salvo por você no final.
     </p>
-    <q-form class="col-2 items-center" @submit.prevent="sendStep()">
+    <q-form class="col-md-3 col-sm-6 items-center" @submit.prevent="sendStep()">
       <q-input
         standout
         dense

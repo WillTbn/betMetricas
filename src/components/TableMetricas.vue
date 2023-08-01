@@ -1,6 +1,9 @@
 <template>
   <div class="q-pa-md">
     <q-table
+      flat
+      bordered
+      dense
       :title="team"
       :rows="rowMetricas"
       :columns="columnsMetricas"

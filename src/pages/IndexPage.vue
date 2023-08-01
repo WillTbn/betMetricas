@@ -1,119 +1,117 @@
 <template>
-  <div class="flex flex-center">
-    <div class="q-pa-md">
-      <div class="row justify-center">
-        <h4 class="col-md-12 col-sm-6 text-h6 text-weight-bold">
-          Adicione a metrica que quiser!
-        </h4>
-        <div class="col-12">
-          <span class="text-overline"
-            >sigar o passo a passo e terá todas os dados com as medias no
-            final</span
-          >
-        </div>
+  <!-- <div class="flex flex-center"> -->
+  <div class="q-pa-md">
+    <div class="row justify-center">
+      <h4 class="col-md-12 col-sm-6 text-h6 text-weight-bold">
+        Adicione a metrica que quiser!
+      </h4>
+      <div class="col-12">
+        <span class="text-overline"
+          >sigar o passo a passo e terá todas os dados com as medias no
+          final</span
+        >
       </div>
-      <q-stepper
-        v-model="step"
-        color="primary"
-        animated
-        style="min-height: 60vh"
-        header-nav
-        ref="stepper"
-      >
-        <StepperLayout
-          title="De o nome da sua metrica"
-          :step="step"
-          :name="1"
-          icon="settings"
-        >
-          <one-step />
-        </StepperLayout>
-
-        <!-- ETAPA 2 -->
-        <StepperLayout
-          title="Quais parametros?"
-          caption="ex:Chute a gol, ace, bola de três, etc.."
-          :step="step"
-          :name="2"
-          icon="create_new_folder"
-        >
-          <two-step />
-        </StepperLayout>
-        <!-- ETAPA 3 -->
-        <StepperLayout
-          title="Quantidade de jogos"
-          caption=""
-          :step="step"
-          :name="3"
-          icon="assignment"
-        >
-          <three-step
-            @sendQuantityOrMetrica="
-              (data.quantity = $event.quantity),
-                (metricasValues = $event.metrica)
-            "
-          />
-        </StepperLayout>
-        <!-- ETAPA 4 -->
-        <StepperLayout
-          title="Coloque os dados"
-          :step="step"
-          :name="4"
-          icon="add_comment"
-        >
-          <q-form class="q-gutter-xs" @submit.prevent="onSubmit">
-            <div
-              class="row"
-              v-for="(campo, index) in metricasValues"
-              :key="campo.id"
-            >
-              <p class="col-12 q-gutter-ys">{{ index }}</p>
-              <div class="col-3" v-for="(jogo, i) in campo" :key="jogo.id">
-                <q-input
-                  style="max-width: 80px"
-                  type="number"
-                  standout
-                  dense
-                  placeholder=""
-                  :label="i"
-                  class="q-gutter-xs"
-                  v-model="metricasValues[index][i]"
-                  :rules="[
-                    (val) =>
-                      (val && val.length > 0) || 'Campo não pode esta vazio',
-                  ]"
-                />
-              </div>
-            </div>
-            <div class="row justify-around">
-              <q-btn
-                class="q-mt-md q-mr-sm"
-                color="primary"
-                label="continua"
-                type="submit"
-              />
-              <q-btn
-                flat
-                @click="sendRemovePlay()"
-                color="primary"
-                label="Back"
-                class="q-mt-md q-mr-sm"
-              />
-            </div>
-          </q-form>
-        </StepperLayout>
-        <!-- ETAPA 5 -->
-        <StepperLayout
-          title="Tabela elaborada"
-          :step="step"
-          :name="5"
-          icon="add_comment"
-        >
-          <five-step />
-        </StepperLayout>
-      </q-stepper>
     </div>
   </div>
+  <q-stepper
+    v-model="step"
+    color="primary"
+    animated
+    style="min-height: 60vh"
+    header-nav
+    ref="stepper"
+  >
+    <StepperLayout
+      title="De o nome da sua metrica"
+      :step="step"
+      :name="1"
+      icon="settings"
+    >
+      <one-step />
+    </StepperLayout>
+
+    <!-- ETAPA 2 -->
+    <StepperLayout
+      title="Quais parametros?"
+      caption="ex:Chute a gol, ace, bola de três, etc.."
+      :step="step"
+      :name="2"
+      icon="create_new_folder"
+    >
+      <two-step />
+    </StepperLayout>
+    <!-- ETAPA 3 -->
+    <StepperLayout
+      title="Quantidade de jogos"
+      caption=""
+      :step="step"
+      :name="3"
+      icon="assignment"
+    >
+      <three-step
+        @sendQuantityOrMetrica="
+          (data.quantity = $event.quantity), (metricasValues = $event.metrica)
+        "
+      />
+    </StepperLayout>
+    <!-- ETAPA 4 -->
+    <StepperLayout
+      title="Coloque os dados"
+      :step="step"
+      :name="4"
+      icon="add_comment"
+    >
+      <q-form class="q-gutter-xs" @submit.prevent="onSubmit">
+        <div
+          class="row"
+          v-for="(campo, index) in metricasValues"
+          :key="campo.id"
+        >
+          <p class="col-12 q-gutter-ys">{{ index }}</p>
+          <div class="col-3" v-for="(jogo, i) in campo" :key="jogo.id">
+            <q-input
+              style="max-width: 80px"
+              type="number"
+              standout
+              dense
+              placeholder=""
+              :label="i"
+              class="q-gutter-xs"
+              v-model="metricasValues[index][i]"
+              :rules="[
+                (val) => (val && val.length > 0) || 'Campo não pode esta vazio',
+              ]"
+            />
+          </div>
+        </div>
+        <div class="row justify-around">
+          <q-btn
+            class="q-mt-md q-mr-sm"
+            color="primary"
+            label="continua"
+            type="submit"
+          />
+          <q-btn
+            flat
+            @click="sendRemovePlay()"
+            color="primary"
+            label="Back"
+            class="q-mt-md q-mr-sm"
+          />
+        </div>
+      </q-form>
+    </StepperLayout>
+    <!-- ETAPA 5 -->
+    <StepperLayout
+      title="Tabela elaborada"
+      :step="step"
+      :name="5"
+      icon="add_comment"
+    >
+      <five-step />
+    </StepperLayout>
+  </q-stepper>
+  <!-- </div> -->
 </template>
 
 <script>

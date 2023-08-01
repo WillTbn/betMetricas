@@ -1,10 +1,10 @@
 <template>
   <div class="q-mx-lg q-my-lg">
     <div class="row justify-between">
-      <div class="col-6 col-sm-3 text-center">
+      <div class="col-md-6 col-sm-3 text-center">
         <p class="text-h5 text-weight-bold">Editando dados</p>
       </div>
-      <div class="col-3 col-sm-2">
+      <div class="col-md-3 col-sm-4">
         <q-btn
           class=""
           label="volta"
@@ -22,10 +22,16 @@
         v-for="(campo, index) in metricasValues"
         :key="campo.id"
       >
-        <p class="col-12 text-h6 text-weight-bold q-gutter-ys q-mx-lg">
+        <p
+          class="col-12 col-sm-12 text-h6 text-weight-bold q-gutter-ys q-mx-lg"
+        >
           {{ index }}
         </p>
-        <q-card-section class="col-3" v-for="(jogo, i) in campo" :key="jogo.id">
+        <q-card-section
+          class="col-md-3 col-sm-2"
+          v-for="(jogo, i) in campo"
+          :key="jogo.id"
+        >
           <q-input
             style="max-width: 80px"
             type="number"
@@ -40,15 +46,16 @@
         </q-card-section>
       </q-card>
       <div class="row justify-between">
-        <q-btn label="Update" color="positive" type="submit" />
-        <q-btn label="novo parametro" color="dark" />
+        <q-btn label="novo parametro" color="dark" class="q-ma-md" />
 
         <q-btn
           @click="sendCardAddPlays()"
           label="Add jogos"
           color="accent"
           icon="fa-solid fa-plus fa-sm"
+          class="q-ma-md"
         ></q-btn>
+        <q-btn class="q-my-md" label="Update" color="positive" type="submit" />
       </div>
     </q-form>
     <q-dialog v-model="prompt" persistent>

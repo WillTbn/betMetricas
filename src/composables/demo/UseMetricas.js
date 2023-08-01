@@ -75,9 +75,33 @@ export default function useMetricas() {
 
         return json[select];
     };
+    const getAll = async () => {
+        const gamesLocal = localStorage.length;
+        const gamesStore = store.state.parameters.gamesSalved;
+        if (gamesLocal > 0 && gamesLocal != gamesStore.length) {
+            let data = [];
 
+            for (var i = 0; i < localStorage.length; i++) {
+                var key = localStorage.key(i);
+                var value = localStorage.getItem(key);
+                data.push(JSON.parse(value));
+                data[i][0]["key"] = key;
+                // console.log("Chave: " + key);
+                // console.log("Valor: " + value);
+            }
+            // for (let i = 0; i < data.length; i++) {
+            //     console.log(data[i][i]);
+            // }
+
+            for (let i = 0; i < data.length; i++) {
+                store.commit("parameters/addGames", data[i][0]);
+            }
+        }
+        return gamesStore;
+    };
     return {
         getOne,
+        getAll,
         update,
         create,
         deleted,
