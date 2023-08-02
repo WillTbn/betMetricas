@@ -69,16 +69,16 @@ export default {
       //   console.log("params ->", params);
       //   console.log("metricas ->", metricas);
       //   console.log("columns ->", columns);
-      console.log("cookie -> ", cookie.value);
+      // console.log("cookie -> ", cookie.value);
       guard.value = await getOneCookie("terms");
-      console.log("get -> ", getOneCookie("terms"));
+      // console.log("get -> ", getOneCookie("terms"));
       if (guard.value === false) {
         try {
           await create(team.value, params.value, metricas.value, columns.value);
           router.replace({ path: "/statistics" });
         } catch (e) {
           console.log(e);
-          errorNotify(e);
+          errorNotify();
         } finally {
           infoNotify("Estatística salva com sucesso!");
           loading.value = false;
@@ -86,7 +86,7 @@ export default {
       } else {
         store.commit("essencial/setStatusCookie", true);
         errorNotify(
-          "Você tem que aceita os cookie para podemos salva as informações dessa metrica localmente"
+          "Você tem que aceita os cookie's para podemos salva as informações dessa metrica localmente em seu navegador."
         );
         setTimeout(() => {
           loading.value = false;

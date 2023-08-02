@@ -1,14 +1,9 @@
 <template>
-
-    <terms-essencial></terms-essencial>
+  <terms-essencial></terms-essencial>
 
   <router-view />
   <!-- MOONLIGHT -->
-  <div class="moon">
-    <q-btn @click="activeMod()">
-      <i class="fas fa-moon"></i>
-    </q-btn>
-  </div>
+  <footer-app email="jlbnunes@live.com" frase="Desenvolvedor:" :link="shared" />
 </template>
 
 <script>
@@ -17,16 +12,17 @@ import { ref, computed, defineComponent, onMounted } from "vue";
 import { useStore } from "vuex";
 import TermsEssencial from "./components/dialog/TermsEssencial.vue";
 import useCookie from "./composables/cookie/UseCookie";
-
+import FooterApp from "./components/FooterApp.vue";
 export default defineComponent({
   name: "App",
   components: {
     TermsEssencial,
+    FooterApp,
   },
   setup() {
     const $q = useQuasar();
     const store = useStore();
-    const { getOneCookie, setMoonLight } = useCookie();
+    const { getOneCookie } = useCookie();
     const guard = ref();
 
     const Diaolog = async () => {
@@ -40,24 +36,6 @@ export default defineComponent({
         console.log("finally app", Diaolog.name);
       }
     };
-    const setMoon = async (status) => {
-      try {
-        await setMoonLight(status);
-      } catch (e) {
-        console.log(e);
-      } finally {
-      }
-    };
-    function activeMod() {
-      console.log("aqui ->", activeMod.name);
-      // get status
-      console.log($q.dark.isActive); // true, false
-
-      // get configured status
-      console.log($q.dark.mode); // "auto", true, false
-      setMoon($q.dark.isActive);
-      $q.dark.toggle();
-    }
     const stateMoon = async () => {
       try {
         let status = await getOneCookie("moon");
@@ -76,9 +54,21 @@ export default defineComponent({
       stateMoon();
       //   }
     });
-    return {
+    const shared = [
+      {
+        link: "https://github.com/WillTbn",
+        name: "github",
+        icon: "fa-brands fa-github",
+      },
+      {
+        link: "https://twitter.com/jlbnwill",
+        name: "twitter",
+        icon: "fa-brands fa-twitter",
+      },
+    ];
 
-      activeMod,
+    return {
+      shared,
     };
   },
 });

@@ -4,7 +4,12 @@
     z-index: 9999;
     bottom: 0;
 }
-
+.shared {
+    position: fixed;
+    z-index: 9999;
+    bottom: 0;
+    right: 0;
+}
 .w-25 {
     width: 0.2rem;
     width: 0.2rem;

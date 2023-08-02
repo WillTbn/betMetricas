@@ -35,7 +35,7 @@ import { useStore } from "vuex";
 const linksList = [
   {
     title: "Cria metricas",
-    caption: "created",
+    caption: "",
     icon: "fa-solid fa-table-list",
     link: "/#/created",
   },
