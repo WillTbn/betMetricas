@@ -2,7 +2,7 @@
   <!-- <div class="flex flex-center"> -->
   <div class="q-pa-md">
     <div class="row justify-center">
-      <h4 class="col-md-12 col-sm-6 text-h6 text-weight-bold">
+      <h4 class="col-10 col-md-12 col-sm-6 text-h6 text-weight-bold">
         Adicione a metrica que quiser!
       </h4>
       <div class="col-12">
@@ -14,6 +14,7 @@
     </div>
   </div>
   <q-stepper
+    class="q-mx-lg"
     v-model="step"
     color="primary"
     animated

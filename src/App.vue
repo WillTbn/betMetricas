@@ -1,38 +1,7 @@
 <template>
-  <q-dialog
-    v-model="cookie"
-    persistent
-    transition-show="rotate"
-    transition-hide="rotate"
-  >
-    <q-card>
-      <q-card-section class="row items-center">
-        <q-avatar
-          icon="fa-solid fa-cookie-bite"
-          color="primary"
-          text-color="white"
-        />
-        <span class="q-ml-sm"
-          >Aceitar salva cookie para melhora sua experiencia ?
-        </span>
-      </q-card-section>
 
-      <q-card-actions align="right">
-        <q-btn
-          flat
-          label="Cancel"
-          color="primary"
-          @click="toogleDialog(false)"
-        />
-        <q-btn
-          flat
-          label="Aceitar"
-          color="positive"
-          @click="toogleDialog(true)"
-        />
-      </q-card-actions>
-    </q-card>
-  </q-dialog>
+    <terms-essencial></terms-essencial>
+
   <router-view />
   <!-- MOONLIGHT -->
   <div class="moon">
@@ -46,16 +15,20 @@
 import { useQuasar } from "quasar";
 import { ref, computed, defineComponent, onMounted } from "vue";
 import { useStore } from "vuex";
+import TermsEssencial from "./components/dialog/TermsEssencial.vue";
 import useCookie from "./composables/cookie/UseCookie";
 
 export default defineComponent({
   name: "App",
+  components: {
+    TermsEssencial,
+  },
   setup() {
     const $q = useQuasar();
     const store = useStore();
-    const { getOneCookie, setCookieTerms, setMoonLight } = useCookie();
+    const { getOneCookie, setMoonLight } = useCookie();
     const guard = ref();
-    const cookie = computed(() => store.state.essencial.terms);
+
     const Diaolog = async () => {
       try {
         guard.value = await getOneCookie("terms");
@@ -67,21 +40,6 @@ export default defineComponent({
         console.log("finally app", Diaolog.name);
       }
     };
-    const setCookies = async () => {
-      try {
-        await setCookieTerms();
-      } catch (e) {
-        console.log(e);
-      } finally {
-      }
-    };
-    function toogleDialog(status) {
-      if (status == true) {
-        setCookies();
-      }
-      // store.dispatch("essencial/updateStatusCookie", status);
-      store.commit("essencial/setStatusCookie", false);
-    }
     const setMoon = async (status) => {
       try {
         await setMoonLight(status);
@@ -119,8 +77,7 @@ export default defineComponent({
       //   }
     });
     return {
-      cookie,
-      toogleDialog,
+
       activeMod,
     };
   },

@@ -46,7 +46,11 @@
         </q-card-section>
       </q-card>
       <div class="row justify-between">
-        <q-btn label="novo parametro" color="dark" class="q-ma-md" />
+        <q-btn label="novo parametro" color="dark" class="q-ma-md" disabled
+          ><q-tooltip transition-show="rotate" transition-hide="rotate">
+            Em breve!
+          </q-tooltip></q-btn
+        >
 
         <q-btn
           @click="sendCardAddPlays()"
@@ -54,7 +58,12 @@
           color="accent"
           icon="fa-solid fa-plus fa-sm"
           class="q-ma-md"
-        ></q-btn>
+          disabled
+        >
+          <q-tooltip transition-show="rotate" transition-hide="rotate">
+            Em breve!
+          </q-tooltip>
+        </q-btn>
         <q-btn class="q-my-md" label="Update" color="positive" type="submit" />
       </div>
     </q-form>
@@ -75,7 +84,7 @@
 <script>
 import { computed, onMounted, ref } from "vue";
 import { useStore } from "vuex";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import UseNotify from "../composables/demo/UseNotify";
 import UseMetricas from "../composables/demo/UseMetricas";
 import { useQuasar } from "quasar";
@@ -91,6 +100,7 @@ export default {
     const { errorNotify, successNotify } = UseNotify();
     const store = useStore();
     const route = useRoute();
+    const router = useRouter();
     const $q = useQuasar();
     const play = ref();
     const metricasValues = ref();
@@ -127,6 +137,7 @@ export default {
     const handleSubmit = async () => {
       $q.loading.show();
       try {
+        successNotify("Estatística atualizada com sucesso!");
         await update(play.value);
       } catch (e) {
         console.log(e);
@@ -134,6 +145,7 @@ export default {
       } finally {
         setTimeout(() => {
           $q.loading.hide();
+          router.go({ path: "statiticas" });
         }, 2000);
       }
     };

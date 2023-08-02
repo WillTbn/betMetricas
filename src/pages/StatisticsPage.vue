@@ -1,19 +1,22 @@
 <template>
   <div class="q-pa-md">
     <div class="row justify-between">
-      <h3 class="text-h6 text-weight-bold col-md-6 col-sm-4">Times Salvos</h3>
-      <size-local class="col-md-6 col-sm-4"></size-local>
+      <h3 class="text-h6 text-weight-bold col-6 col-sm-4">Times Salvos</h3>
+      <size-local></size-local>
     </div>
     <!-- <div class="column justify-center"> -->
     <div v-if="games.length > 0">
       <div v-for="team in games" :key="team.name">
-        <table-metricas
-          :team="team.name"
-          :columnsMetricas="team.columns"
-          :rowMetricas="team.params"
-        />
-        <div class="row justify-around">
-          <div class="col-md-6 col-sm-4">
+        <div class="row justify-center">
+          <table-metricas
+            class="col-md-8 col-12"
+            :team="team.name"
+            :columnsMetricas="team.columns"
+            :rowMetricas="team.params"
+          />
+        </div>
+        <div class="row justify-center q-px-md padding-buttons-stat">
+          <div class="col-4">
             <q-btn
               type="submit"
               :loading="loading"
@@ -28,7 +31,7 @@
               </template>
             </q-btn>
           </div>
-          <div class="col-md-6 col-sm-4">
+          <div class="">
             <q-btn
               type="submit"
               :loading="loading"
