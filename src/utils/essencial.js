@@ -3,18 +3,6 @@ function metricas(estatiticas, quantidadeJogos, time, paramentros, tipo) {
     const intForce = parseInt(quantidadeJogos);
     let jsonDados = {};
     let arrayDados = [];
-    let arrayColumuns = [
-        {
-            name: "name",
-            required: true,
-            label: "Estatiticas",
-            align: "left",
-            field: "name",
-            //   field: (row) => row.name,
-            format: (val) => `${val}`,
-            sortable: true,
-        },
-    ];
 
     if (stringSplit.length % intForce == 0) {
         if (stringSplit.length / intForce === paramentros.length) {
@@ -46,9 +34,7 @@ function metricas(estatiticas, quantidadeJogos, time, paramentros, tipo) {
                         });
                     }
                 }
-                // arrayDados.push({
-                //   media: parseInt(calculando / intForce),
-                // });
+
                 if (paramentros.length == i + 1) {
                     jsonDados["nome"] = time;
 
@@ -58,23 +44,7 @@ function metricas(estatiticas, quantidadeJogos, time, paramentros, tipo) {
             if (tipo === "row") {
                 return arrayDados;
             } else if (tipo === "columns") {
-                for (let c = 0; c < intForce; c++) {
-                    arrayColumuns.push({
-                        name: "jogo_" + [c + 1],
-                        align: "center",
-                        label: "Jogo " + [c + 1],
-                        field: "jogo_" + [c + 1],
-                        sortable: true,
-                    });
-                }
-                arrayColumuns.push({
-                    name: "media",
-                    label: "Media",
-                    field: "media",
-                    sortable: true,
-                    sortable: true,
-                });
-                return arrayColumuns;
+                return addColumns(intForce);
             }
             return jsonDados;
         }
@@ -83,6 +53,37 @@ function metricas(estatiticas, quantidadeJogos, time, paramentros, tipo) {
         }, confira!.  foram ${paramentros.length} paramentos `;
     }
     return `Quantidade de estatiticas passado não condiz com quantidade de jogos passado, verifique. Quantidade de números estatiticos ${stringSplit.length}, quantidade de jogos passados ${quantidadeJogos}`;
+}
+function addColumns(quantity) {
+    let arrayColumuns = [
+        {
+            name: "name",
+            required: true,
+            label: "Estatiticas",
+            align: "left",
+            field: "name",
+            //   field: (row) => row.name,
+            format: (val) => `${val}`,
+            sortable: true,
+        },
+    ];
+    for (let c = 0; c < quantity; c++) {
+        arrayColumuns.push({
+            name: "jogo_" + [c + 1],
+            align: "center",
+            label: "Jogo " + [c + 1],
+            field: "jogo_" + [c + 1],
+            sortable: true,
+        });
+    }
+    arrayColumuns.push({
+        name: "media",
+        label: "Media",
+        field: "media",
+        sortable: true,
+        sortable: true,
+    });
+    return arrayColumuns;
 }
 function returnVirgula(values) {
     // let metricaVirgula = values;
@@ -389,4 +390,4 @@ const APISPORT = {
 
 function salvedMetricasLocaStorage(team, params, metricas, columns) {}
 
-export { APISPORT, metricas, returnVirgula, metricasParamsValues };
+export { APISPORT, metricas, returnVirgula, metricasParamsValues, addColumns };

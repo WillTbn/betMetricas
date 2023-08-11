@@ -1,7 +1,7 @@
 {
     "name": "metricas",
     "version": "0.0.1",
-    "description": "A Quasar Project",
+    "description": "A metrics project with javascript",
     "productName": "Bet Metricas",
     "author": "Jorge Nunes <jlbnunes@live.com>",
     "private": true,

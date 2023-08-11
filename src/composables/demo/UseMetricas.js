@@ -1,5 +1,5 @@
 import { useStore } from "vuex";
-import { metricas, returnVirgula } from "../../utils/essencial";
+import { metricas, returnVirgula, addColumns } from "../../utils/essencial";
 export default function useMetricas() {
     const store = useStore();
     const getOne = async (item) => {
@@ -12,16 +12,19 @@ export default function useMetricas() {
             let contador = 0;
             for (let p = 0; p < Object.values(update).length; p++) {
                 contador = +1;
-                console.log(Object.values(update)[p]);
+
                 Object.assign(Object.values(update)[p], {
                     ["jogo_" +
-                    (Object.keys(Object.values(update)[p]).length + i)]: "",
+                    (Object.keys(Object.values(update)[p]).length + contador)]:
+                        "",
                 });
             }
         }
+
         return update;
     };
-    const update = async (item) => {
+    const removeFinallyMetricas = async (update) => {};
+    const update = async (item, metrica) => {
         item.update_at = Date.now();
         item.params = metricas(
             returnVirgula(item.editable),
@@ -29,6 +32,9 @@ export default function useMetricas() {
             item.name,
             Object.keys(item.editable),
             "row"
+        );
+        item.columns = addColumns(
+            Object.keys(Object.values(metrica)[0]).length
         );
         localStorage.setItem(item.name, JSON.stringify([item]));
     };

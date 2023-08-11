@@ -10,7 +10,7 @@
         {{ frase }}
         Jorge Nunes
         <span v-for="shared in link" :key="shared.id">
-          <a :href="shared.link" class="q-px-sm">
+          <a :href="shared.link" target="_blank" class="q-px-sm">
             <i :class="shared.icon"></i>
           </a>
         </span>
