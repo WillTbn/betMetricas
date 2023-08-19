@@ -22,14 +22,14 @@ export default defineComponent({
   setup() {
     const $q = useQuasar();
     const store = useStore();
-    const { getOneCookie } = useCookie();
+    const { getOneCookie, getTerms } = useCookie();
     const guard = ref();
 
     const Diaolog = async () => {
       try {
-        guard.value = await getOneCookie("terms");
+        guard.value = await getTerms("terms");
+
         store.commit("essencial/setStatusCookie", guard.value);
-        console.log("guard -> ", guard.value);
       } catch (e) {
         console.log(e);
       } finally {
@@ -40,8 +40,6 @@ export default defineComponent({
       try {
         let status = await getOneCookie("moon");
         $q.dark.set(status);
-        console.log("state Moon set", status);
-        console.log("state Moon", $q.dark.mode);
       } catch (e) {
         console.log(e);
       } finally {
@@ -69,6 +67,7 @@ export default defineComponent({
 
     return {
       shared,
+      guard,
     };
   },
 });

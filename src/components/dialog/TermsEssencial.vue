@@ -1,4 +1,4 @@
-<template >
+<template>
   <q-dialog
     v-model="cookie"
     persistent
@@ -51,18 +51,23 @@ export default defineComponent({
     const cookie = computed(() => store.state.essencial.terms);
     const setCookies = async () => {
       try {
+        store.commit("essencial/setStatusCookie", false);
         await setCookieTerms();
       } catch (e) {
         console.log(e);
       } finally {
+        store.commit("essencial/setStatusCookie", false);
       }
     };
     function toogleDialog(status) {
       if (status == true) {
+        store.commit("essencial/setStatusCookie", false);
+        cookie.value = false;
+
         setCookies();
       }
       // store.dispatch("essencial/updateStatusCookie", status);
-      store.commit("essencial/setStatusCookie", false);
+      store.commit("essencial/setStatusCookie", status);
     }
 
     return {

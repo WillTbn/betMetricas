@@ -1,33 +1,47 @@
 <template>
-  <div class="q-pa-md">
-    <q-table
-      flat
-      bordered
-      dense
-      :title="team"
-      :rows="rowMetricas"
-      :columns="columnsMetricas"
-      row-key="name"
-    />
-  </div>
+    <div class="q-pa-md">
+        <q-table
+            flat
+            bordered
+            dense
+            :title="team"
+            :rows="rowMetricas"
+            :columns="columnsMetricas"
+            row-key="name"
+        >
+            <template v-slot:top-right>
+                <p>data de criação: {{ $filters.formatDataBR(created) }}</p>
+                <q-separator inset />
+                <p v-if="updated">
+                    ultima atualização: {{ $filters.formatDataBR(updated) }}
+                </p>
+            </template>
+        </q-table>
+    </div>
 </template>
 
 <script>
 export default {
-  name: "TableMetricas",
-  props: {
-    team: {
-      type: String,
+    name: "TableMetricas",
+    props: {
+        team: {
+            type: String,
+        },
+        rowMetricas: {
+            type: Array,
+        },
+        columnsMetricas: {
+            type: Array,
+        },
+        created: {
+            type: Number,
+        },
+        updated: {
+            type: Number,
+        },
     },
-    rowMetricas: {
-      type: Array,
+    setup() {
+        return {};
     },
-    columnsMetricas: {
-      type: Array,
-    },
-  },
-  setup() {
-    return {};
-  },
 };
 </script>

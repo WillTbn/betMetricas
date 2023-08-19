@@ -25,8 +25,8 @@ import { defineComponent } from "vue";
 export default defineComponent({
   name: "FooterApp",
   props: {
-    email: { type: String },
-    link: { type: Array },
+    email: { type: String, required: true },
+    link: { type: Array, required: true },
     frase: { type: String },
   },
   setup() {

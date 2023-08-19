@@ -1,5 +1,5 @@
 export default function () {
-    return {
-        terms: true,
-    };
+  return {
+    terms: true,
+  };
 }
