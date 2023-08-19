@@ -27,7 +27,7 @@ export default function useCookie() {
       }
     }
     console.log(getTerms.name);
-    return false;
+    return true;
   };
   const setCookieTerms = async () => {
     document.cookie = "terms=false";
