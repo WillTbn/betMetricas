@@ -21,6 +21,8 @@
     style="min-height: 60vh"
     header-nav
     ref="stepper"
+    contracted
+    alternative-labels
   >
     <StepperLayout
       title="De o nome da sua metrica"
@@ -199,6 +201,7 @@ export default {
       metricasValues,
       sendRemovePlay,
       onSubmit,
+      store,
     };
   },
 };
