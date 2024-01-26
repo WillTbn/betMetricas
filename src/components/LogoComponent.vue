@@ -1,7 +1,7 @@
 <template>
   <a href="/" class="brand">
     <h4 :class="sizeClass">
-      Bet Metricas
+      Metricas
       <i class="fas fa-basketball" style="font-size: small"></i>
       <i class="fas fa-baseball" style="font-size: small"></i>
       <i class="fas fa-futbol" style="font-size: small"></i>...
