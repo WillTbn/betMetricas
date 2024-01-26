@@ -3,7 +3,7 @@
     <q-header class="bg-dark text-white">
       <q-toolbar>
         <q-toolbar-title>
-          <LogoComponent sizeClass="font-awe size-font-9" />
+          <logo-icons iconsSize="56px" />
         </q-toolbar-title>
 
         <q-btn dense flat round icon="menu" @click="toggleRightDrawer" />
@@ -29,7 +29,7 @@
 <script>
 import { computed, defineComponent, ref } from "vue";
 import EssentialLink from "components/EssentialLink.vue";
-import LogoComponent from "components/LogoComponent.vue";
+import LogoIcons from "components/LogoIcons.vue";
 import { useStore } from "vuex";
 
 const linksList = [
@@ -57,7 +57,7 @@ export default defineComponent({
 
   components: {
     EssentialLink,
-    LogoComponent,
+    LogoIcons,
   },
 
   setup() {
