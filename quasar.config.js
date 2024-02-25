@@ -18,7 +18,7 @@ module.exports = configure(function (ctx) {
   if (ctx.dev) {
     envFileName = ".env.local";
   } else {
-    envFileName = ".env.prod";
+    envFileName = ".env";
   }
   return {
     eslint: {
