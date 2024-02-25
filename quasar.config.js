@@ -15,10 +15,10 @@ module.exports = configure(function (ctx) {
 
   // Dependendo do ambiente, carrega as variáveis de ambiente apropriadas
   let envFileName = ".env";
-  if (ctx.prod) {
-    envFileName = ".env.prod";
-  } else if (ctx.dev) {
+  if (ctx.dev) {
     envFileName = ".env.local";
+  } else {
+    envFileName = ".env.prod";
   }
   return {
     eslint: {
@@ -36,7 +36,7 @@ module.exports = configure(function (ctx) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli/boot-files
-    boot: ["axios", "filters", "google"],
+    boot: ["axios", "filters"],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
     css: ["app.scss"],
