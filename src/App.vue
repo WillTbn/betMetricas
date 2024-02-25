@@ -4,6 +4,7 @@
   <router-view />
   <!-- MOONLIGHT -->
   <footer-app email="jlbnunes@live.com" frase="Desenvolvedor:" :link="shared" />
+  {{ valueEnv }}
 </template>
 
 <script>
@@ -24,12 +25,15 @@ export default defineComponent({
     const store = useStore();
     const { getOneCookie, getTerms } = useCookie();
     const guard = ref();
+    const valueEnv = ref(null);
 
     const Diaolog = async () => {
       try {
         guard.value = await getTerms("terms");
 
         store.commit("essencial/setStatusCookie", guard.value);
+        valueEnv.value = process.env.API_URL;
+        console.log("teste env -> ", process.env);
       } catch (e) {
         console.log(e);
       } finally {
@@ -68,6 +72,7 @@ export default defineComponent({
     return {
       shared,
       guard,
+      valueEnv,
     };
   },
 });

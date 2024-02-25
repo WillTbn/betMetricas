@@ -9,8 +9,17 @@
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js
 
 const { configure } = require("quasar/wrappers");
+require("dotenv").config({ override: true });
+module.exports = configure(function (ctx) {
+  // dotenv.config(); // Carrega variáveis de ambiente do arquivo .env padrão
 
-module.exports = configure(function (/* ctx */) {
+  // Dependendo do ambiente, carrega as variáveis de ambiente apropriadas
+  let envFileName = ".env";
+  if (ctx.prod) {
+    envFileName = ".env.prod";
+  } else if (ctx.dev) {
+    envFileName = ".env.local";
+  }
   return {
     eslint: {
       // fix: true,
@@ -27,7 +36,7 @@ module.exports = configure(function (/* ctx */) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli/boot-files
-    boot: ["axios", "filters"],
+    boot: ["axios", "filters", "google"],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
     css: ["app.scss"],
@@ -53,7 +62,7 @@ module.exports = configure(function (/* ctx */) {
         node: "node16",
       },
 
-      vueRouterMode: "hash", // available values: 'hash', 'history'
+      vueRouterMode: "history", // available values: 'hash', 'history'
       // vueRouterBase,
       // vueDevtools,
       // vueOptionsAPI: false,
@@ -62,7 +71,7 @@ module.exports = configure(function (/* ctx */) {
 
       // publicPath: '/',
       // analyze: true,
-      // env: {},
+      env: require("dotenv").config({ path: envFileName }).parsed,
       // rawDefine: {}
       // ignorePublicFolder: true,
       // minify: false,

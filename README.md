@@ -41,3 +41,7 @@ quasar build
 ### Customize the configuration
 
 See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
+
+### .env
+
+copia o arquivo .env-local-copy para um novo .env.local com as variaveis locais de trabalho
