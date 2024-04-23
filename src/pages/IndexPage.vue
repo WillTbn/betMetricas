@@ -28,7 +28,7 @@
       title="De o nome da sua metrica"
       :step="step"
       :name="1"
-      icon="settings"
+      icon="fa-solid fa-shield-halved"
     >
       <one-step />
     </StepperLayout>
@@ -39,7 +39,7 @@
       caption="ex:Chute a gol, ace, bola de três, etc.."
       :step="step"
       :name="2"
-      icon="create_new_folder"
+      icon="fa-solid fa-chart-gantt"
     >
       <two-step />
     </StepperLayout>

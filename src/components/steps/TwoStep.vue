@@ -31,18 +31,9 @@
             'Campo vazio, digite o nome do parametro',
         ]"
       />
-      <q-btn label="adicionar" type="submit" color="black" class="q-ml-sm">
-        <q-icon name="arrow_forward" />
+      <q-btn label="adicionar" type="submit" color="black" class="q-ma-md">
+        <q-icon name="fa-regular fa-square-plus" size="1rem" class="q-ml-sm" />
       </q-btn>
-      <!-- <q-btn
-        type="submit"
-        dense
-        color="primary"
-        label="adicionar"
-        class="col-4 col-md-2 col-sm-2"
-      >
-        <q-icon name="arrow_forward" />
-      </q-btn> -->
     </q-form>
 
     <div class="row justify-around">
@@ -60,16 +51,34 @@
         class="col-4 col-md-2 q-ml-sm"
       />
     </div>
+    <q-separator class="q-my-md" />
+    <p class="text-overline">
+      Se prefire tem item metricas padrões para adicionar, basta selecionar!
+    </p>
+    <div class="row q-ma-md">
+      <div class="col-2" v-for="item in paramsCase" :key="item.id">
+        <q-chip color="purple-9" text-color="white" outline>
+          {{ item.name }}
+          <q-icon
+            round
+            name="fa-regular fa-square-plus"
+            @click="removeParams()"
+          />
+        </q-chip>
+      </div>
+    </div>
   </div>
 </template>
 <script>
 import { ref, computed } from "vue";
 import { useStore } from "vuex";
 import useNotify from "../../composables/demo/UseNotify";
+import UseCaseMetricas from "../../composables/demo/UseCaseMetricas";
 
 export default {
   setup() {
     const { errorNotify } = useNotify();
+    const { paramsCase } = UseCaseMetricas();
     const params = ref();
     const store = useStore();
     // const $q = useQuasar();
@@ -104,7 +113,7 @@ export default {
     return {
       params,
       addParams,
-
+      paramsCase,
       listParams,
       toDecrease,
       increase,

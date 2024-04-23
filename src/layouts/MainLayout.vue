@@ -9,7 +9,7 @@
         </q-toolbar-title>
         <q-space></q-space>
 
-        <SendauthVue class="q-mr-lg" />
+        <!-- <SendauthVue class="q-mr-lg" /> -->
 
         <q-btn dense flat round icon="menu" @click="toggleRightDrawer" />
       </q-toolbar>
@@ -37,7 +37,7 @@ import EssentialLink from "components/EssentialLink.vue";
 import LogoIcons from "components/LogoIcons.vue";
 
 import { useStore } from "vuex";
-import SendauthVue from "components/Auth/Sendauth.vue";
+// import SendauthVue from "components/Auth/Sendauth.vue";
 
 const linksList = [
   {
@@ -65,7 +65,7 @@ export default defineComponent({
   components: {
     EssentialLink,
     LogoIcons,
-    SendauthVue,
+    // SendauthVue,
   },
 
   setup() {
