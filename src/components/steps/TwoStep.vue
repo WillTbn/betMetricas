@@ -9,7 +9,7 @@
     <div class="row">
       <div class="col-2" v-for="item in listParams" :key="item.id">
         <q-chip color="dark" text-color="white">
-          <q-icon round name="closed" @click="removeParams()" />
+          <q-icon round name="closed" @click="removeParams(item)" />
           {{ item.name }}
         </q-chip>
       </div>
@@ -53,16 +53,21 @@
     </div>
     <q-separator class="q-my-md" />
     <p class="text-overline">
-      Se prefire tem item metricas padrões para adicionar, basta selecionar!
+      Se prefire tem metricas padrões para adicionar, basta selecionar!
     </p>
     <div class="row q-ma-md">
       <div class="col-2" v-for="item in paramsCase" :key="item.id">
-        <q-chip color="purple-9" text-color="white" outline>
+        <q-chip
+          color="purple-9"
+          text-color="white"
+          outline
+          :disable="item.disabled"
+        >
           {{ item.name }}
           <q-icon
             round
             name="fa-regular fa-square-plus"
-            @click="removeParams()"
+            @click="addSelect(item.name)"
           />
         </q-chip>
       </div>
@@ -78,9 +83,10 @@ import UseCaseMetricas from "../../composables/demo/UseCaseMetricas";
 export default {
   setup() {
     const { errorNotify } = useNotify();
-    const { paramsCase } = UseCaseMetricas();
+    const { serializeString } = UseCaseMetricas();
     const params = ref();
     const store = useStore();
+    const paramsCase = computed(() => store.state.parameters.paramsCase);
     // const $q = useQuasar();
     const listParams = computed(() => store.state.parameters.data);
     function toDecrease() {
@@ -98,11 +104,18 @@ export default {
     }
     function removeParams(item) {
       store.commit("parameters/removeName", item);
+      store.commit("parameters/removeDisabledParams", item.name);
+    }
+    function addSelect(e) {
+      store.commit("parameters/disabledParams", e);
+      store.commit("parameters/addName", e);
     }
     function addParams() {
       if (
         listParams.value.length > 0 &&
-        listParams.value.filter((e) => e.name == params.value).length > 0
+        listParams.value.filter(
+          (e) => serializeString(e.name) == serializeString(params.value)
+        ).length > 0
       ) {
         errorNotify("Nome de metrica já adicionado.");
       } else {
@@ -118,6 +131,7 @@ export default {
       toDecrease,
       increase,
       removeParams,
+      addSelect,
     };
   },
 };

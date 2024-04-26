@@ -25,7 +25,7 @@
     alternative-labels
   >
     <StepperLayout
-      title="De o nome da sua metrica"
+      title="De o nome a sua metrica"
       :step="step"
       :name="1"
       icon="fa-solid fa-shield-halved"
