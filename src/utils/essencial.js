@@ -13,7 +13,6 @@ function metricas(estatiticas, quantidadeJogos, time, paramentros, tipo) {
                 var parte = stringSplit.slice(start, final);
                 var calculando = parte.reduce(
                     (acc, num) => acc + parseInt(num),
-                    0
                 );
                 // console.log("parte", parte);
 

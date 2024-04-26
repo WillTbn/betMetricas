@@ -1,62 +1,60 @@
 <template>
-    <div class="q-pa-md">
-        <div class="justify-between row">
-            <h3 class="text-h6 text-weight-bold col-6 col-sm-4">
-                Times Salvos
-            </h3>
-            <size-local></size-local>
-        </div>
-        <!-- <div class="justify-center column"> -->
-        <div v-if="games.length > 0">
-            <div v-for="team in games" :key="team.name">
-                <div class="justify-center row">
-                    <table-metricas
-                        class="col-md-8 col-12"
-                        :team="team.name"
-                        :columnsMetricas="team.columns"
-                        :rowMetricas="team.params"
-                        :created="team.created_at"
-                        :updated="team.update_at"
-                    />
-                </div>
-                <div class="justify-center row q-px-md padding-buttons-stat">
-                    <div class="col-4">
-                        <q-btn
-                            type="submit"
-                            :loading="loading"
-                            label="Editar"
-                            class="q-mt-md"
-                            color="info"
-                            icon="edit"
-                            @click="edit(team)"
-                        >
-                            <template v-slot:loading>
-                                <q-spinner-facebook />
-                            </template>
-                        </q-btn>
-                    </div>
-                    <div class="">
-                        <q-btn
-                            type="submit"
-                            :loading="loading"
-                            label="Deletar"
-                            class="q-mt-md"
-                            color="red"
-                            icon="delete_forever"
-                            @click="deletedAction(team)"
-                        >
-                            <template v-slot:loading>
-                                <q-spinner-facebook />
-                            </template>
-                        </q-btn>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="" v-else>Não tem times salvos!!</div>
+  <div class="q-pa-md">
+    <div class="justify-between row">
+      <h3 class="text-h6 text-weight-bold col-6 col-sm-4">Times Salvos</h3>
+      <size-local></size-local>
     </div>
-    <!-- </div> -->
+    <!-- <div class="justify-center column"> -->
+    <div v-if="games.length > 0">
+      <div v-for="team in games" :key="team.name">
+        <div class="justify-center row">
+          <table-metricas
+            class="col-md-8 col-12"
+            :team="team.name"
+            :columnsMetricas="team.columns"
+            :rowMetricas="team.params"
+            :created="team.created_at"
+            :updated="team.update_at"
+          />
+        </div>
+        <div class="justify-around row q-px-md padding-buttons-stat">
+          <div class="col-md-6 col-sm-12">
+            <q-btn
+              type="submit"
+              :loading="loading"
+              label="Editar"
+              class="q-mt-md"
+              color="info"
+              icon="edit"
+              @click="edit(team)"
+            >
+              <template v-slot:loading>
+                <q-spinner-facebook />
+              </template>
+            </q-btn>
+          </div>
+          <div class="">
+            <q-btn
+              type="submit"
+              :loading="loading"
+              label="Deletar"
+              class="q-mt-md"
+              color="red"
+              icon="delete_forever"
+              @click="deletedAction(team)"
+            >
+              <template v-slot:loading>
+                <q-spinner-facebook />
+              </template>
+            </q-btn>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="" v-else>Não tem times salvos!!</div>
+  </div>
+  <!-- </div> -->
 </template>
 <script>
 import { computed, onMounted, ref } from "vue";
@@ -68,47 +66,47 @@ import SizeLocal from "../components/SizeLocal.vue";
 import useMetricas from "src/composables/demo/UseMetricas";
 
 export default {
-    components: {
-        TableMetricas,
-        SizeLocal,
-    },
-    setup() {
-        const loading = ref(false);
-        const store = useStore();
-        const router = useRouter();
-        const $q = useQuasar();
-        const games = computed(() => store.state.parameters.gamesSalved);
-        const { deleted, getAll } = useMetricas();
-        function edit(team) {
-            router.push({ path: `${team.key}/statistics`, params: team.key });
-        }
+  components: {
+    TableMetricas,
+    SizeLocal,
+  },
+  setup() {
+    const loading = ref(false);
+    const store = useStore();
+    const router = useRouter();
+    const $q = useQuasar();
+    const games = computed(() => store.state.parameters.gamesSalved);
+    const { deleted, getAll } = useMetricas();
+    function edit(team) {
+      router.push({ path: `${team.key}/statistics`, params: team.key });
+    }
 
-        const deletedAction = async (item) => {
-            loading.value = true;
-            try {
-                await deleted(item);
-            } catch (e) {
-                console.log(e);
-            } finally {
-                Notify.create({
-                    type: "positive",
-                    message: "Estatística excluída com sucesso",
-                });
-                setTimeout(() => {
-                    router.go({ path: "statiticas" });
-                }, 2000);
-            }
-        };
-        onMounted(() => {
-            //   store.dispatch("parameters/getGamesSalved");
-            getAll();
+    const deletedAction = async (item) => {
+      loading.value = true;
+      try {
+        await deleted(item);
+      } catch (e) {
+        console.log(e);
+      } finally {
+        Notify.create({
+          type: "positive",
+          message: "Estatística excluída com sucesso",
         });
-        return {
-            games,
-            loading,
-            deletedAction,
-            edit,
-        };
-    },
+        setTimeout(() => {
+          router.go({ path: "statiticas" });
+        }, 2000);
+      }
+    };
+    onMounted(() => {
+      //   store.dispatch("parameters/getGamesSalved");
+      getAll();
+    });
+    return {
+      games,
+      loading,
+      deletedAction,
+      edit,
+    };
+  },
 };
 </script>

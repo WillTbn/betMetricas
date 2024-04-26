@@ -7,7 +7,7 @@
       </p>
     </div>
     <div class="row">
-      <div class="col-2" v-for="item in listParams" :key="item.id">
+      <div class="col-md-6 col-sm-12" v-for="item in listParams" :key="item.id">
         <q-chip color="dark" text-color="white">
           <q-icon round name="closed" @click="removeParams(item)" />
           {{ item.name }}
@@ -56,7 +56,7 @@
       Se prefire tem metricas padrões para adicionar, basta selecionar!
     </p>
     <div class="row q-ma-md">
-      <div class="col-2" v-for="item in paramsCase" :key="item.id">
+      <div class="col-md-4 col-sm-12" v-for="item in paramsCase" :key="item.id">
         <q-chip
           color="purple-9"
           text-color="white"
