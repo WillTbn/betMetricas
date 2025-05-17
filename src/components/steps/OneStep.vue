@@ -34,7 +34,7 @@ import useNotify from "../../composables/demo/UseNotify";
 export default {
   setup() {
     const store = useStore();
-    const team = ref("Teste Play");
+    const team = ref("");
     const { errorNotify } = useNotify();
     const textError = ref();
     function sendStep() {
@@ -47,7 +47,7 @@ export default {
         ).length > 0
       ) {
         textError.value =
-          "Use outro identificador, atualize o existente ou excluao e volte aqui. ";
+          "Use outro identificador, atualize o existente ou exclusao e volte aqui. ";
         errorNotify("Identificador já utilizado!");
       } else {
         store.commit("parameters/addTeam", team.value);
